@@ -1,6 +1,23 @@
 console.log('Lets write JavaScript');
 let currentSong = new Audio();
 
+function formatSecondsToMinutesSeconds(totalSeconds) {
+    if(isNaN(totalSeconds)||totalSeconds <0){
+        return "Invalid input";
+    }
+    // Calculate minutes and seconds
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = Math.floor(totalSeconds % 60);
+
+    // Format minutes and seconds with leading zeros if necessary
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(seconds).padStart(2, '0');
+
+    // Return formatted time string
+    return `${formattedMinutes}:${formattedSeconds}`;
+}
+
+
 async function getSongs() {
     let a = await fetch("http://127.0.0.1:3000/songs/");
     let response = await a.text();
@@ -19,12 +36,15 @@ async function getSongs() {
     return songs;
 }
 
-const playMusic = (track)=>{
+const playMusic = (track, pause=false)=>{
     // let audio = new Audio("/songs/" + track);
     currentSong.src = "/songs/" + track
-    currentSong.play();
-    play.src = "pause.svg";
-    document.querySelector(".songinfo").innerHTML = track;
+    if(!pause){
+        currentSong.play();
+        play.src = "pause.svg";
+    }
+    
+    document.querySelector(".songinfo").innerHTML = decodeURI(track);
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00";
 }
 
@@ -33,6 +53,7 @@ async function main() {
     
     // Get the list of all the songs
     let songs = await getSongs();
+    playMusic(songs[0],true)
 
     // Show all the songs in the playlist
     let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0]
@@ -64,6 +85,19 @@ async function main() {
             currentSong.pause()
             play.src = "play.svg"
         }
+    })
+
+    // listen for timeupdate event
+    currentSong.addEventListener("timeupdate", ()=>{
+        console.log(currentSong.currentTime, currentSong.duration);
+        document.querySelector(".songtime").innerHTML = `${formatSecondsToMinutesSeconds(currentSong.currentTime)}/${formatSecondsToMinutesSeconds(currentSong.duration)}`;
+        document.querySelector(".circle").style.left = (currentSong.currentTime/currentSong.duration) * 100 + "%";
+    })
+
+    // Add an event listener to seekbar
+    document.querySelector(".seekbar").addEventListener("click", e=>{
+        document.querySelector(".circle").style.left = (e.offsetX / e.target.getBoundingClientRect().width) * 100 + "%";
+        currentSong.currentTime = ((currentSong.duration) * (e.offsetX / e.target.getBoundingClientRect().width) * 100) / 100;
     })
 
 }
