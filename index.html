@@ -14,6 +14,9 @@
 
     <div class="container flex bg-black">
         <div class="left">
+            <div class="close">
+                <img width="30" class="invert" src="close.svg" alt="">
+            </div>
             <div class="home bg-grey rounded m-1 p-1">
                 <div class="logo"><img width="110" class="invert" src="logo.svg" alt="logo"></div>
                 <ul>
@@ -64,16 +67,21 @@
         <div class="right bg-grey rounded">
             <div class="header">
                 <div class="nav">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffffff"
-                        fill="none">
-                        <path d="M15 6C15 6 9.00001 10.4189 9 12C8.99999 13.5812 15 18 15 18" stroke="currentColor"
-                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffffff"
-                        fill="none">
-                        <path d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18" stroke="currentColor"
-                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
+                    <div class="hamburgerContainer">
+                        <img class="invert hamburger" src="hamburger.svg" alt="">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                            color="#ffffff" fill="none">
+                            <path d="M15 6C15 6 9.00001 10.4189 9 12C8.99999 13.5812 15 18 15 18" stroke="currentColor"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                            color="#ffffff" fill="none">
+                            <path d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18" stroke="currentColor"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+
                 </div>
                 <div class="buttons">
                     <button class="signupbtn">Sign up</button>
@@ -84,20 +92,19 @@
             <div class="spotifyPlaylists">
                 <h1>Spotify Playlists</h1>
                 <div class="cardContainer">
-                    <div class="card">
+                    <div data-folder="cs" class="card">
                         <div class="play">
                             <!-- made this svg using chatgpt -->
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="35px" height="35px"
                                 style="border-radius: 50%; padding: 10px; background-color: #1ed760;" fill="black">
                                 <path d="M8 5v14l11-7z" stroke="none" />
                             </svg>
-
                         </div>
                         <img src="https://i.scdn.co/image/ab67706f0000000254473de875fea0fd19d39037" alt="">
                         <h2>lofi beats</h2>
                         <p>chill beats, lofi vibes, new tracks every...</p>
                     </div>
-                    <div class="card">
+                    <div data-folder="ncs" class="card">
                         <div class="play">
                             <!-- made this svg using chatgpt -->
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="35px" height="35px"
@@ -127,8 +134,16 @@
                             <img id="play" src="play.svg" alt="">
                             <img id="next" src="nextsong.svg" alt="">
                         </div>
-                        <div class="songtime">
+                        <div class="timevol">
+                            <div class="songtime">
 
+                            </div>
+                            <div class="volume">
+                                <img width="25" src="volume.svg" alt="">
+                                <div class="range">
+                                    <input type="range" name="volume">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
