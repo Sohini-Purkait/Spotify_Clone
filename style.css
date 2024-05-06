@@ -100,7 +100,7 @@ body {
     gap: 10px;
     flex-wrap: wrap;
     overflow-y: auto;
-    max-height: 70vh;
+    max-height: 60vh;
 }
 
 .card {
@@ -206,6 +206,7 @@ body {
 
 .hamburger{
     display: none;
+    cursor: pointer;
 }
 .hamburgerContainer{
     display: flex;
@@ -259,7 +260,7 @@ body {
     background:  black;
     border-radius: 10px;
     position: absolute;
-    bottom: 0;
+    bottom: 8px;
     margin: 6px;
     cursor: pointer;
 }
@@ -300,6 +301,10 @@ body {
     justify-content: center;
     align-items: center;
     gap: 12px;
+    cursor: pointer;
+}
+.range input{
+    cursor: pointer;
 }
 .abovebar{
     display: flex;
@@ -313,12 +318,14 @@ body {
 @media(max-width: 1200px){
     .left{
         position: absolute;
-        left: -120%;
+        left: -130%;
         transition: all 0.3s;
         z-index: 1;
         width: 370px;
         background-color: black;
         padding: 0;
+        height: 100vh;
+        
     }
     .left .close{
         position: absolute;
@@ -333,6 +340,9 @@ body {
     .playbar{
         width: calc(100vw - 55px);
         font-size: 7.6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .seekbar{
         width: calc(100vw - 75px);
@@ -346,11 +356,12 @@ body {
         margin: 0;
     }
     .card{
-        width: 44vw;
+        width: 55vw;
     }
     .cardContainer{
         margin: 0;
         justify-content: center;
+
     }
     .songbuttons{
         gap: 9px;
@@ -371,11 +382,38 @@ body {
         flex-direction: column;
         gap: 13px;
     }
-
+    
+    .cardContainer{
+        max-height: unset;
+        overflow-y: unset;
+        margin-bottom: 30vh;
+    }
 }
 
-@media(max-width: 400px){
+@media(max-width: 500px){
     .card{
-        width: 84vw;
+        width: 100%;
     }
+    .header>*{
+        padding: 2px;
+        /* margin-top: 2px; */
+    }
+    .header{
+        padding: 7px;
+    }
+    .buttons>*{
+        margin: 0 6px;
+    }    
+    .spotifyPlaylists h1{
+        padding: 4px;
+    }
+    .library{
+        height: 85vh;
+    }
+    .left{
+        
+        width: 100vw;
+    }
+
+    
 }
